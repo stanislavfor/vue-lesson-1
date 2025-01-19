@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>first - vue.js</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <style>
+        body {
+            max-width: 800px;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        
+        li {
+            cursor: pointer;
+            /*            cursor: crosshair;*/
+            margin: 5px 0;
+            padding: 5px;
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: background-color 0.2s;
+        }
+        
+        li:hover {
+            background-color: #e0e0e0;
+        }
+        
+        button {
+            cursor: pointer;
+            background-color: aqua;
+            width: 200px;
+            padding: 10px;
+            border: 1px solid #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <button @click="reverseButtonText">{{ buttonText }}</button>
+        <br>
+        <br>
+        <button @click="addListItem">Кнопка : Добавить</button>
+        <ul>
+            <li v-for="(item, index) in listItems" :key="index" @click="removeListItem(index)">{{ item }}</li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: '#app'
+            , data: {
+                buttonText: 'Кнопка : Перевернуть'
+                , listItems: ['Элемент списка', 'Элемент списка', 'Элемент списка']
+            }
+            , methods: {
+                reverseButtonText() {
+                        this.buttonText = this.buttonText.split('').reverse().join('');
+                    }
+                    , addListItem() {
+                        this.listItems.push('Новый элемент списка');
+                    }
+                    , removeListItem(index) {
+                        this.listItems.splice(index, 1);
+                    }
+            }
+        });
+    </script>
+</body>
+
+</html>
